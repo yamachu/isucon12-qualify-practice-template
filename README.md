@@ -84,6 +84,16 @@ $ ./bench                               # 127.0.0.1:443 に対して実行
 
 https://github.com/isucon/isucon12-qualify/releases 以下にビルド済みの初期データがあります。
 
+## ローカル環境での実行方法
+
+```sh
+$ make up/go # up/ 以降は実装を指定
+$ make initial_data # ghコマンドを使用するため、事前にインストールする必要があります
+$ make install_initial_data # 初期データをbenchが読める状態に配置
+$ make init-mysql # 初期データをMySQLに投入
+$ make run-bench # benchを実行
+```
+
 ## Links
 
 - [ISUCON12予選 レギュレーション](https://isucon.net/archives/56671734.html)
