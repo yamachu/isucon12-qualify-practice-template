@@ -8,7 +8,7 @@ RUN apt-get update && \
   wget -q https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb && \
   apt-get -y install ./mysql-apt-config_*_all.deb && \
   apt-get -y update && \
-  apt-get -y install mysql-client
+  apt-get -y install default-mysql-client
 
 RUN apt-get -y install build-essential libssl-dev libffi-dev python3-dev cargo
 
