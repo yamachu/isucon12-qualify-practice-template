@@ -13,7 +13,7 @@ services:
     restart: always
 
   webapp:
-    build: ./webapp/go
+    build: ./webapp/${APP_LANGUAGE:-go}
     environment:
       ISUCON_DB_HOST: mysql
       ISUCON_DB_PORT: 3306
