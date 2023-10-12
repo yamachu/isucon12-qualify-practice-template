@@ -9,7 +9,8 @@ services:
       - ./public:/public
     ports:
       - "443:443"
-    network_mode: host
+    networks:
+      isucon12-qualify:
     restart: always
 
   webapp:
@@ -23,7 +24,7 @@ services:
       ISUCON_ADMIN_HOSTNAME: admin.t.isucon.dev
     ports:
       - "3000:3000"
-    links:
+    depends_on:
       - mysql
     volumes:
       - ./webapp:/home/isucon/webapp
@@ -32,6 +33,8 @@ services:
       - gopkg:/home/isucon/go/pkg
     init: true
     restart: always
+    networks:
+      isucon12-qualify:
 
   mysql:
     image: mysql/mysql-server:8.0.31
@@ -44,6 +47,8 @@ services:
     ports:
       - 13306:3306
     restart: always
+    networks:
+      isucon12-qualify:
 
   blackauth:
     build: ./webapp/go
@@ -58,6 +63,8 @@ services:
       - /usr/local/go/bin/go
       - run
       - main.go
+    networks:
+      isucon12-qualify:
 
   bench:
     build: ./webapp/go
@@ -70,7 +77,8 @@ services:
       - tenant_db:/home/isucon/webapp/tenant_db
       - initial_data:/home/isucon/initial_data
       - gopkg:/home/isucon/go/pkg
-    network_mode: host
+    networks:
+      isucon12-qualify:
     working_dir: /home/isucon/bench
     command:
       - "bash"
@@ -82,3 +90,6 @@ volumes:
   gopkg:
   tenant_db:
   initial_data:
+
+networks:
+  isucon12-qualify:
